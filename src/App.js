@@ -1,25 +1,19 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import Header from "./components/Header";
+import CasesTracker from "./components/CasesTracker";
+import { Route,Switch } from "react-router-dom";
+import VaccineTracker from "./components/VaccineTracker";
+import { useState } from "react";
 
-function App() {
+export default function App() {
+  const [casetracker,setPage] = useState(true);
+  const pageChange = (pageval) => {
+    setPage(pageval);
+  }
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header pageChange={pageChange}/>
+      {casetracker ? <CasesTracker/> : <VaccineTracker/>}
     </div>
   );
 }
-
-export default App;

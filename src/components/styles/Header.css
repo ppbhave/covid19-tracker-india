@@ -1,0 +1,24 @@
+.app_header {
+    margin: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0px;
+    background-color: rgb(93, 187, 204);
+  }
+  
+  .casesTracker {
+    margin-left: 20%;
+    margin-right: 10%;
+    color: brown;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  .vaccineTracker {
+    margin-right: 20%;
+    color: brown;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  

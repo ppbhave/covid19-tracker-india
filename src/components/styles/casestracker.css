@@ -1,0 +1,50 @@
+
+.cases-tracker-header {
+    justify-items: center;
+    margin-bottom: 0px;
+}
+
+.cases-tracker-container{
+    /* height:100%; */
+    position: absolute;
+    width: 100%;
+}
+
+.cases-tracker-top {
+    display:flex;
+    justify-content:space-evenly;
+}
+
+.cases-tracker-header > h4 {
+    align-self: center;
+}
+
+.cases-tracker-header > .cases_state_dropdown{
+    position: fixed;
+    right: 0%;
+    max-width: 10%;
+    max-height: 10px;
+}
+
+.cases-tracker-top {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.cases-tracker-bottom {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content:space-evenly;
+    margin-top: 5px;
+}
+
+.cases-tracker-left-bottom {
+    align-items: flex-start;
+    width:50%;
+}
+
+.cases-tracker-right-bottom {
+    align-items: flex-end;
+    width:40%;
+}

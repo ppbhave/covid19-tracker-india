@@ -1,0 +1,38 @@
+.today-cases-card {
+    max-width: 100%;
+}
+
+tr {
+    display:felx;
+    text-align: left;
+}
+
+.today-cases-table-td tr:nth-of-type(odd){
+    background-color: #f3f2f8;
+}
+
+.tableFixHead {
+    overflow-y: auto;
+    max-height: 30vh;
+}
+
+.today-cases-card-header {
+    display: flex;
+}
+
+/* .today-cases-card-header > button {
+    
+} */
+
+.txt-c {
+    flex: 1; text-align: center;
+}
+
+.txt-r {
+    /* margin-right: 10px;
+    margin-top: 10px;
+    margin-left: auto; */
+    width:20px;
+    height:20px;
+}
+
