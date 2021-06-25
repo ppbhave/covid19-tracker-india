@@ -22,7 +22,6 @@ function CasesTracker() {
   const [mapcenter,setmapcenter] = useState({ lat:23.111412927136396, lng:78.97626932452121});
   const [mapzoom,setmapzoom] = useState(3);
   const [casesType,setCasesType] = useState("cases");
-  const [infograph,setinfoGraph] =useState(false);
 
   const dataprocessing = async () => {
     fetch("https://disease.sh/v3/covid-19/gov/India")
@@ -147,7 +146,7 @@ const latlongdict= {
 
     <div className="cases-tracker-bottom">
       <div className="cases-tracker-left-bottom">
-      {infograph ? <Linegraph setinfoGraph={setinfoGraph}/> : <CasesTable tabledata={casesdata} setinfoGraph={setinfoGraph}/>}
+      <Linegraph casetype={casesType}/>
       </div>
   
   <div className="cases-tracker-right-bottom">   

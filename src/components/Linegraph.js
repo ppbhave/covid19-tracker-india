@@ -1,150 +1,93 @@
 import "./styles/Linegraph.css";
-import React, {Component} from 'react';
+import React, {useState} from 'react';
 import { Line } from "react-chartjs-2";
 import { useEffect } from "react";
-import { Canvas } from "leaflet";
 
-// function Linegraph() {
-//   const graphdata= [];
-//   useEffect(()=>{
-//     fetch("https://api.covid19india.org/data.json")
-//       .then((response) => response.json())
-//       .then((data) => {
-//         let labels=[]
-//         let active=[]
-//         let recovered=[]
-//         let deaths=[]
-//         data.cases_time_series.map((daily)=>{
-//           labels.push(daily.dateymd);
-//           active.push(daily.dailyconfirmed);
-//           recovered.push(daily.dailyrecovered);
-//           deaths.push(daily.dailydeceased)
-//         });
-       
-//         //active
-//         graphdata.push({
-//           labels:labels,
-//           label: "Active cases",
-//           data: active,
-//           fill: false,
-//           backgroundColor: "blue",
-//           borderColor: "blue"});
-//         //recovered
-//         graphdata.push({
-//           labels:labels,
-//           label: "Recoveries",
-//           data: recovered,
-//           fill: false,
-//           backgroundColor: "green",
-//           borderColor: "green"});
-//         //deaths
-//         graphdata.push({
-//           labels:labels,
-//           label: "Deaths",
-//           data: deaths,
-//           fill: false,
-//           backgroundColor: "red",
-//           borderColor: "red"}); 
-//       });
-//   },[])
+function Linegraph( {casetype} ) {
+  const [data,setData] = useState({});
+  const labels=[]
+  const yAxisData=[]
 
-//   const data = {
-//   labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-//   datasets: [
-//     {
-//       label: 'My First dataset',
-//       fill: false,
-//       lineTension: 0.1,
-//       backgroundColor: 'rgba(75,192,192,0.4)',
-//       borderColor: 'rgba(75,192,192,1)',
-//       borderCapStyle: 'butt',
-//       borderDash: [],
-//       borderDashOffset: 0.0,
-//       borderJoinStyle: 'miter',
-//       pointBorderColor: 'rgba(75,192,192,1)',
-//       pointBackgroundColor: '#fff',
-//       pointBorderWidth: 1,
-//       pointHoverRadius: 5,
-//       pointHoverBackgroundColor: 'rgba(75,192,192,1)',
-//       pointHoverBorderColor: 'rgba(220,220,220,1)',
-//       pointHoverBorderWidth: 2,
-//       pointRadius: 1,
-//       pointHitRadius: 10,
-//       data: [65, 59, 80, 81, 56, 55, 40]
-//     }
-//   ]
-// };
+  const properties={
+    'cases':{
+      graphTitle:"Active cases over time.",
+      backgroundColor: "rgba(204, 16, 52, 0.5)",
+      borderColor: "rgb(79, 98, 241)",
+      fillColor: 'rgb(177, 185, 245)'
+    },
+    'deaths':{
+      graphTitle:"Deaths over time.",
+      backgroundColor: "rgba(204, 16, 52, 0.5)",
+      borderColor: "#CC1034",
+      fillColor: 'rgba(220,220,220,0.2)'
+    },
+    'recovered':{
+      graphTitle:"Covid recoveries over time.",
+      backgroundColor: "rgba(204, 16, 52, 0.5)",
+      borderColor: "#29680C",
+      fillColor: '#8FF55F'
+    }
+  }
 
-//   return (
-//     <div className="linegraph_div">
-//       <Line data={graphdata[0]} />
-//     </div>
-//   );
-
-// }
-// export default Linegraph;  
-
-const chartData = {
-  chartData:{
-    labels: ['Boston', 'Worcester', 'Springfield', 'Lowell', 'Cambridge', 'New Bedford'],
-    datasets:[
+  useEffect(()=>{
+    fetch("https://api.covid19india.org/data.json")
+      .then((response) => response.json())
+      .then((data) => {
+        data.cases_time_series.forEach(daily => {
+          labels.push(daily.dateymd);
+          switch (casetype) {
+            case 'cases'    : yAxisData.push(daily.dailyconfirmed); break;
+            case 'recovered': yAxisData.push(daily.dailyrecovered); break;
+            case 'deaths': yAxisData.push(daily.dailydeceased); break;
+          }
+        });
+ 
+  setData({
+    labels: labels,
+    datasets: [
       {
-        label:'Population',
-        data:[
-          617594,
-          181045,
-          153060,
-          106519,
-          105162,
-          95072
-        ],
-        backgroundColor:[
-          'rgba(255, 99, 132, 0.6)',
-          'rgba(54, 162, 235, 0.6)',
-          'rgba(255, 206, 86, 0.6)',
-          'rgba(75, 192, 192, 0.6)',
-          'rgba(153, 102, 255, 0.6)',
-          'rgba(255, 159, 64, 0.6)',
-          'rgba(255, 99, 132, 0.6)'
-        ]
+        label:properties[casetype].graphTitle,
+        xAxisID:'axisX',
+        yAxisID:'axisY',
+        backgroundColor: properties[casetype].backgroundColor,
+        borderColor: properties[casetype].borderColor,
+        fillColor: 'rgb(177, 185, 245)', //properties[casetype].fillColor,
+        data: yAxisData
+      }]
+          });
+      });
+  },[casetype]);
+
+  const options = {
+    fill:false,
+    layout: {
+      padding: {left:10}
+  },
+    elements:{
+      point:{
+        radius:0
+      },
+      line:{
+        borderWidth:2
       }
-    ]
+    },
+    plugins: {
+      title:{
+        text:properties[casetype].graphTitle,
+        display:true,
+        position:'bottom'
+      },
+      legend: {
+          display: false,
+      }
   }
-};
-
-const defaultProps = {
-    displayTitle:true,
-    displayLegend: true,
-    legendPosition:'right',
-    location:'City'
-  }
-
- const  location="Massachusetts";
- const  legendPosition="bottom";
-
- function Linegraph() {
-
-    return (
-      <div className="inegraph_div">
-        <h2>Line Example</h2>
-        <Canvas>
-        <Line
-          data={chartData}
-          options={{
-            title:{
-              display:defaultProps.displayTitle,
-              text:'Largest Cities In '+location,
-              fontSize:25
-            },
-            legend:{
-              display:defaultProps.displayLegend,
-              position:legendPosition
-            }
-          }}
-        />
-        </Canvas>
-      </div>
-    );
   }
 
-  export default Linegraph;
+  return (
+    <div className="linegraph_div">
+      <Line data={data} options={options}/>
+    </div>
+  );
+
+}
+export default Linegraph;  
