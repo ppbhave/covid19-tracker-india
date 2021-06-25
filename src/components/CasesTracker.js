@@ -108,21 +108,24 @@ const latlongdict= {
 
       <div className="cases-tracker-top">
       <CasesCard stateName={casesdata[stateindex].state}
-      casesLabel={"Active cases"}
+      casesLabel={"cases"}
       cases={casesdata[stateindex].active}
       total={casesdata[stateindex].cases}
+      casetype={casesType}
       onCaseTypeChange={onCaseTypeChange}/>
 
       <CasesCard stateName={casesdata[stateindex].state}
-      casesLabel={"Recoveries"}
+      casesLabel={"recovered"}
       cases={casesdata[stateindex].recovered}
       total={casesdata[stateindex].cases}
+      casetype={casesType}
       onCaseTypeChange={onCaseTypeChange}/>
 
       <CasesCard stateName={casesdata[stateindex].state}
-      casesLabel={"Deaths"}
+      casesLabel={"deaths"}
       cases={casesdata[stateindex].deaths}
       total={casesdata[stateindex].cases}
+      casetype={casesType}
       onCaseTypeChange={onCaseTypeChange}/>
 
       <FormControl className="cases_state_dropdown">

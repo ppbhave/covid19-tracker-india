@@ -1,26 +1,25 @@
 import { Card, Typography } from "@material-ui/core";
 import "./styles/cards.css"
 
-function CasesCard({stateName,casesLabel,cases,total,onCaseTypeChange}) {
-  let caseType;
+function CasesCard({stateName,casesLabel,cases,total,casetype,onCaseTypeChange}) {
   const upperborder= () =>{
-    let bordercolor={borderTop:""};
-    switch(casesLabel) {
-      case "Active cases" : bordercolor.borderTop="4px solid blue";
-                            caseType = "cases";
-                            break;
-      case "Recoveries" : bordercolor.borderTop="4px solid green";
-                            caseType = "recovered"; 
-                            break;
-      case "Deaths" : bordercolor.borderTop="4px solid red"; 
-                            caseType = "deaths";
-                            break;
+    let bordercolor={borderTop:"4px solid white"};
+    if(casetype===casesLabel) {
+      switch(casesLabel) {
+        case "cases" : bordercolor.borderTop="4px solid blue";
+                              break;
+        case "recovered" : bordercolor.borderTop="4px solid green";
+                              break;
+        case "deaths" : bordercolor.borderTop="4px solid red"; 
+                              break;
+      }
     }
     return bordercolor;
   } 
+
     return (
       <Card className="cases-card" style={upperborder()} onClick={()=>{
-        onCaseTypeChange(caseType);
+        onCaseTypeChange(casesLabel);
       }}>
         <Typography className="card-header" color="textSecondary">{stateName}</Typography>
         <Typography className="card-region-Name" variant="h5" component="h2">{cases}</Typography>

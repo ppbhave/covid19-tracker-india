@@ -10,19 +10,19 @@ function Linegraph( {casetype} ) {
 
   const properties={
     'cases':{
-      graphTitle:"Active cases over time.",
+      graphTitle:"Active cases per day.",
       backgroundColor: "rgba(204, 16, 52, 0.5)",
       borderColor: "rgb(79, 98, 241)",
       fillColor: 'rgb(177, 185, 245)'
     },
     'deaths':{
-      graphTitle:"Deaths over time.",
+      graphTitle:"Deaths per day.",
       backgroundColor: "rgba(204, 16, 52, 0.5)",
       borderColor: "#CC1034",
       fillColor: 'rgba(220,220,220,0.2)'
     },
     'recovered':{
-      graphTitle:"Covid recoveries over time.",
+      graphTitle:"Covid recoveries per day.",
       backgroundColor: "rgba(204, 16, 52, 0.5)",
       borderColor: "#29680C",
       fillColor: '#8FF55F'
