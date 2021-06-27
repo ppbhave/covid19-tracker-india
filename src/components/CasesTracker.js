@@ -1,6 +1,5 @@
 import CasesCard from "./CasesCard";
 import CasesMap from "./CasesMap";
-import CasesTable from "./CasesTable";
 import Linegraph from "./Linegraph";
 import { FormControl, MenuItem, Select } from "@material-ui/core";
 import { useEffect, useState } from "react";
@@ -11,13 +10,13 @@ import "leaflet/dist/leaflet.css"
 function CasesTracker() {
   const [casesdata,updatecaseData] = useState([{active: 0,
     cases: 1,
-    deaths: 0,
-    recovered: 0,
+    deaths: 1,
+    recovered: 1,
     state: "India",
-    todayActive: 0,
-    todayCases: 0,
-    todayDeaths: 0,
-    todayRecovered: 0}]);
+    todayActive: 1,
+    todayCases: 1,
+    todayDeaths: 1,
+    todayRecovered: 1}]);
   const [stateindex,setStateindex] = useState(0);
   const [mapcenter,setmapcenter] = useState({ lat:23.111412927136396, lng:78.97626932452121});
   const [mapzoom,setmapzoom] = useState(3);
@@ -79,7 +78,7 @@ const latlongdict= {
   const sortData = (data) => {
     let sortedData=data;
     sortedData.sort((a, b) => {
-      if (a.cases > b.cases) {
+      if ((a.active+a.deaths) > (b.active+b.deaths)) {
         return -1;
       } else {
         return 1;
@@ -91,7 +90,7 @@ const latlongdict= {
   const onStateChange = (value) => {
     setStateindex(casesdata.indexOf(value));
     let region=value.state;
-    region==="India" ? setmapzoom(3) : setmapzoom(5);
+    region==="India" ? setmapzoom(3) : setmapzoom(7);
     setmapcenter([latlongdict[region][0],latlongdict[region][1]]);
   };
 
@@ -153,7 +152,7 @@ const latlongdict= {
       </div>
   
   <div className="cases-tracker-right-bottom">   
-  <CasesMap mapcenter={mapcenter} mapzoom={mapzoom} statesData={casesdata} latlongInfo={latlongdict} casesType={casesType}/>
+  <CasesMap mapcenter={mapcenter} mapzoom={mapzoom} statesData={casesdata} latlongInfo={latlongdict}/>
   </div>
 
   </div>
