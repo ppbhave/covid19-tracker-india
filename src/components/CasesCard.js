@@ -12,6 +12,8 @@ function CasesCard({stateName,casesLabel,cases,total,casetype,onCaseTypeChange})
                               break;
         case "deaths" : bordercolor.borderTop="4px solid red"; 
                               break;
+        default : bordercolor.borderTop="4px solid blue";
+                              break;
       }
     }
     return bordercolor;

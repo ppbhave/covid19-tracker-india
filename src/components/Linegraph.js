@@ -39,6 +39,7 @@ function Linegraph( {casetype} ) {
             case 'cases'    : yAxisData.push(daily.dailyconfirmed); break;
             case 'recovered': yAxisData.push(daily.dailyrecovered); break;
             case 'deaths': yAxisData.push(daily.dailydeceased); break;
+            default : yAxisData.push(daily.dailyconfirmed); break;
           }
         });
  

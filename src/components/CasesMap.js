@@ -53,6 +53,7 @@ function ChangeView({ center, zoom }) {
 export const showCircle = (statedata,latlongInfo) => (
     statedata.map( region =>  (
       <CircleMarker
+              key={region.state}
               center={latlongInfo[region.state]}
               color={zoneColors[setZone(region)].hex}
               fillColor={zoneColors[setZone(region)].half_op}

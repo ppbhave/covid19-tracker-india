@@ -1,0 +1,5 @@
+.vaccination-datatable {
+    margin-top: 10px;
+    max-height: 58vh;
+    overflow: scroll;
+}

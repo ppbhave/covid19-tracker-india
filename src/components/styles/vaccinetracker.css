@@ -1,0 +1,41 @@
+.vaccine-tracker-header {
+    justify-items: center;
+    margin-bottom: 0px;
+}
+
+.vaccine-tracker-container{
+    /* height:100%; */
+    position: absolute;
+    width: 100%;
+}
+
+.vaccine-tracker-top {
+    display:flex;
+    justify-content:space-evenly;
+}
+
+.vaccine-tracker-header > h4 {
+    align-self: center;
+}
+
+.vaccine-tracker-top {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.search-by-selector{
+    border:1px solid black;
+    border-radius: 10px;
+    width:15%;
+    height:5%;
+    padding:5px;
+    cursor: pointer;
+}
+
+.vaccine-tracker-bottom {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content:space-evenly;
+    margin-top: 15px;
+}

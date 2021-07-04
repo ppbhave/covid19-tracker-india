@@ -1,0 +1,17 @@
+.district-form-container{
+    display: block;
+    margin: auto; 
+    height: 10px;
+    margin-bottom: 10px;
+}
+.select-component{
+    margin-right: 30px;
+    min-width: 120px;
+}
+
+.district-launch{
+    align-self:baseline;
+}
+.datatable{
+    max-height:fit-content;
+}

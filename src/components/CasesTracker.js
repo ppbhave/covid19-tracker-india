@@ -21,7 +21,7 @@ function CasesTracker() {
   const [mapcenter,setmapcenter] = useState({ lat:23.111412927136396, lng:78.97626932452121});
   const [mapzoom,setmapzoom] = useState(3);
   const [casesType,setCasesType] = useState("cases");
-
+  
   const dataprocessing = async () => {
     fetch("https://disease.sh/v3/covid-19/gov/India")
       .then((response) => response.json())
@@ -90,7 +90,7 @@ const latlongdict= {
   const onStateChange = (value) => {
     setStateindex(casesdata.indexOf(value));
     let region=value.state;
-    region==="India" ? setmapzoom(3) : setmapzoom(7);
+    region==="India" ? setmapzoom(3.5) : setmapzoom(7);
     setmapcenter([latlongdict[region][0],latlongdict[region][1]]);
   };
 
@@ -102,7 +102,7 @@ const latlongdict= {
     
     <div className="cases-tracker-container">
        <div className="cases-tracker-header">
-       <h4>COVID 19 cases tracker</h4>
+       <h4>Latest COVID 19 cases updates</h4>
       </div>
 
       <div className="cases-tracker-top">

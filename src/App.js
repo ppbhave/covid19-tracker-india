@@ -1,7 +1,6 @@
 import "./App.css";
 import Header from "./components/Header";
 import CasesTracker from "./components/CasesTracker";
-import { Route,Switch } from "react-router-dom";
 import VaccineTracker from "./components/VaccineTracker";
 import { useState } from "react";
 
@@ -12,7 +11,7 @@ export default function App() {
   }
   return (
     <div className="App">
-      <Header pageChange={pageChange}/>
+      <Header pageChange={pageChange} highlighter={casetracker}/>
       {casetracker ? <CasesTracker/> : <VaccineTracker/>}
     </div>
   );
