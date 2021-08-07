@@ -21,12 +21,17 @@ const [vaccinedata,setvaccinedata] = useState([]);
 const [stateData,setStateData] = useState([]);
 const [districtData,setDistrictData] =useState([]);
 const classes = useStyles();
+let isDisabled=false;
 useEffect(()=>{
     fetch("https://cdn-api.co-vin.in/api/v2/admin/location/states")
     .then((response) => response.json())
     .then((data) => {
         setStateData(data.states)
-    });
+    }).catch(()=>{
+      alert("service is not working properly.")
+      isDisabled=true
+    }
+      )
 });
 
 useEffect(()=>{
@@ -49,7 +54,7 @@ const callDistrictApi=()=>{
 };
 
 return (
-<div>
+<div disabled={isDisabled}>
 <Box className={classes.formBlock}>
 <FormControl  >
     <InputLabel id="states-label">Select state:</InputLabel>

@@ -61,21 +61,24 @@
     }
 export const tableHeaders=["Center","address","Block name","Vaccine","Dose 1","Dose 2","Type","Fee","Age group"]
 export const tablekeys=["name","address","block_name","vaccine","available_capacity_dose1","available_capacity_dose2","fee_type","fee","min_age_limit"]
-const callurl=(today,url,calendar,i)=>{
+const callurl=(url,calendar,i,setvaccinedata)=>{
+    if(i < 7) {
+        let today=getFormattedDate(new Date(),i)
             fetch(url+today)
             .then((response) => response.json())
             .then((data) => {
               calendar[i]={
                   date:today,
-                  sessions:data.sessions}
-            });
+                  sessions:data.sessions
+                }
+                callurl(url,calendar,++i,setvaccinedata)
+            }) 
+        } else {
+            setvaccinedata(calendar)
         }
-export const getSlotCalendar=(url,setSlots)=>{
-    let calendar=[null,null,null,null,null,null,null];
-        for(var i=0;i<7;i++) {
-            callurl(getFormattedDate(new Date(),i),url,calendar,i)
-        }
-        setTimeout(() => {
-            setSlots(calendar);  
-        }, 1000);  
+    }
+export const getSlotCalendar=(url,setvaccinedata)=>{
+    let calendar=[null,null,null,null,null,null,null];      
+        callurl(url,calendar,0,setvaccinedata)
+
 }

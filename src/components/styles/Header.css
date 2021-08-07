@@ -5,6 +5,11 @@
     align-items: center;
     margin-bottom: 0px;
     background-color: rgb(174, 233, 243);
+    width: 100vw;
+  }
+
+  .app_header > h2 {
+    margin-left:10px
   }
   
   .casesTracker {

@@ -35,7 +35,7 @@ function TableComponent({data}){
         </TableHead>
         <TableBody className="vaccination-datatable-body">
           {
-            data.map(row=> row.sessions.length > 0 ? <SessionFound  key ={Math.random().toString(36).substring(3)} slots={row.sessions}/> : <SessionNotFound key={Math.random().toString(36).substring(7)} date={row.date}/>)
+            data.map((row,i)=> row.sessions.length > 0 ? <SessionFound  key ={i} slots={row.sessions}/> : <SessionNotFound key={i} date={row.date}/>)
           }
         </TableBody>
       </Table>

@@ -6,3 +6,15 @@
     cursor: pointer;
 }
 
+@media screen and (max-width: 700px){
+    .cases-card {
+        margin-top: 10px;
+        width: 50%;
+        border-radius: 10px;
+        box-shadow: 10px 10px 10px black;
+        cursor: pointer;
+        margin-left: 25%;
+    }
+}
+
+
